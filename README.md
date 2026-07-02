@@ -1,298 +1,137 @@
-# 🚀 CareerPath AI — Full-Stack MERN EdTech Platform
+🚀 CareerPath AI — Full-Stack MERN EdTech Platform
 
-> AI-powered career guidance platform built with React.js, Node.js, Express, MongoDB, and OpenAI API.
+An AI-powered career guidance platform that helps students explore careers, get personalized roadmaps, and chat with an AI tutor — built end-to-end with React, Node.js, Express, and MongoDB.
 
----
+✨ Why I Built This
+Most career guidance platforms in India are static and generic. CareerPath AI gives students a searchable, filterable career catalog with detailed roadmaps, salary ranges, and demand levels — plus a real-time AI tutor (OpenAI/Groq-compatible) that answers career questions conversationally instead of pointing to a PDF.
 
-## 📁 Complete Folder Structure
+⭐ Features
 
-```
-careerpath-ai/
-│
-├── frontend/                          # React.js Application
-│   ├── public/
-│   │   └── index.html                 # HTML entry with Google Fonts
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx             # Sticky navbar with glassmorphism + hamburger
-│   │   │   └── Footer.jsx             # Full footer with links and social icons
-│   │   ├── pages/
-│   │   │   ├── Home.jsx               # Hero + Categories + Featured Careers + CTA
-│   │   │   ├── Courses.jsx            # Career listing with search + category filter
-│   │   │   ├── CareerDetail.jsx       # Full career detail with tabs + sidebar
-│   │   │   ├── Services.jsx           # 5 service cards + AI tutor CTA
-│   │   │   ├── Contact.jsx            # Contact form → MongoDB via API
-│   │   │   └── AITutor.jsx            # Real-time AI chat with OpenAI integration
-│   │   ├── services/
-│   │   │   └── api.js                 # Axios API service layer
-│   │   ├── App.js                     # Router + page transitions + scroll-to-top
-│   │   ├── index.js                   # React DOM entry
-│   │   └── index.css                  # Global CSS + design tokens + utilities
-│   ├── package.json
-│   └── .env                           # REACT_APP_API_URL
-│
-├── backend/                           # Node.js + Express API
-│   ├── config/
-│   │   ├── db.js                      # MongoDB Mongoose connection
-│   │   └── seed.js                    # Database seeder (6 career records)
-│   ├── models/
-│   │   ├── Career.js                  # Career Mongoose schema
-│   │   ├── Contact.js                 # Contact form Mongoose schema
-│   │   └── ChatHistory.js             # Chat session history schema
-│   ├── controllers/
-│   │   ├── careerController.js        # GET, POST careers
-│   │   ├── contactController.js       # Submit + retrieve contacts
-│   │   └── aiController.js            # OpenAI chat + recommendations
-│   ├── routes/
-│   │   ├── careerRoutes.js            # /api/careers
-│   │   ├── contactRoutes.js           # /api/contact (with validation)
-│   │   └── aiRoutes.js                # /api/ai (with rate limiting)
-│   ├── middleware/
-│   │   └── errorHandler.js            # Centralized error handling
-│   ├── server.js                      # Express server entry point
-│   ├── package.json
-│   └── .env.example                   # Environment variable template
-│
-└── README.md
-```
+🔍 Browse & filter careers by category (Tech, Business, Creative, Science, Finance, Healthcare, Education)
+🗺️ Detailed career roadmaps — stages, duration, topics, curated resources per career
+🤖 AI Tutor — real-time chat powered by OpenAI/Groq/Together AI with rate-limited API and persistent chat history
+💰 Salary & demand insights per career (min/max range, demand level, future scope)
+📬 Contact/lead capture with server-side validation, stored in MongoDB
+🔒 Production-grade security — Helmet, CORS, rate limiting, input validation, centralized error handling
+📱 Fully responsive UI with glassmorphism navbar and Framer Motion transitions
 
----
+🧰 Tech Stack
 
-## ⚡ Quick Start (5 Steps)
+LayerTechnologyFrontendReact 18 + React Router v6AnimationsFramer MotionIconsReact IconsHTTP ClientAxiosBackendNode.js + Express 4DatabaseMongoDB + MongooseAIOpenAI SDK (compatible with Groq, Together AI)SecurityHelmet + CORS + Rate Limit + express-validatorDev ToolsNodemon + Create React App
 
-### Prerequisites
-- **Node.js** v16+
-- **MongoDB** (local or Atlas)
-- **OpenAI API Key** (or Groq/Together AI key)
+⚡ Quick Start
 
----
+Prerequisites
+Node.js v16+
+MongoDB (local or Atlas)
+OpenAI API Key (or Groq/Together AI key)
 
-### Step 1 — Setup Backend
+1 — Backend
 
-```bash
-cd backend
+bashcd backend
 npm install
-cp .env.example .env   # Edit with your values
-```
+cp .env.example .env   # fill in your values
 
-Edit `backend/.env`:
-```env
-PORT=5000
+envPORT=5000
 MONGODB_URI=mongodb://localhost:27017/careerpathdb
 OPENAI_API_KEY=sk-your-openai-key-here
 CLIENT_URL=http://localhost:3000
 NODE_ENV=development
-```
 
-### Step 2 — Seed the Database
+2 — Seed the Database
 
-```bash
-cd backend
+bashcd backend
 node config/seed.js
 # ✅ Seeded 6 careers
-```
 
-### Step 3 — Start Backend
+3 — Start Backend
 
-```bash
-npm run dev        # Development (nodemon)
-# OR
-npm start          # Production
-```
+bashnpm run dev        # development (nodemon)
+# or
+npm start           # production
 
-Backend runs at: `http://localhost:5000`
+Runs at http://localhost:5000
 
----
+4 — Frontend
 
-### Step 4 — Setup Frontend
-
-```bash
-cd frontend
+bashcd frontend
 npm install
-```
 
-Edit `frontend/.env`:
-```env
-REACT_APP_API_URL=http://localhost:5000/api
-```
+envREACT_APP_API_URL=http://localhost:5000/api
 
-### Step 5 — Start Frontend
+5 — Start Frontend
 
-```bash
-npm start
-```
+bashnpm start
 
-Frontend runs at: `http://localhost:3000`
+Runs at http://localhost:3000
 
----
+🔑 Using Alternative AI Providers
 
-## 🔑 Using Alternative AI Providers
+The backend works with any OpenAI-compatible API.
 
-The backend supports any OpenAI-compatible API. To use **Groq** (free, fast):
+Groq (free, fast):
 
-```env
-OPENAI_API_KEY=gsk_your-groq-api-key
+envOPENAI_API_KEY=gsk_your-groq-api-key
 OPENAI_BASE_URL=https://api.groq.com/openai/v1
 OPENAI_MODEL=llama-3.1-70b-versatile
-```
 
-To use **Together AI**:
-```env
-OPENAI_API_KEY=your-together-key
+Together AI:
+
+envOPENAI_API_KEY=your-together-key
 OPENAI_BASE_URL=https://api.together.xyz/v1
 OPENAI_MODEL=meta-llama/Llama-3-70b-chat-hf
-```
 
-Get free Groq key: https://console.groq.com
+Free Groq key: https://console.groq.com
 
----
+📡 API Endpoints
 
-## 📡 API Endpoints
+MethodEndpointDescriptionGET/api/healthServer health checkGET/api/careersGet all careers (filter: category, featured)GET/api/careers/:slugGet career by slugPOST/api/careersCreate new careerPOST/api/contactSubmit contact form → MongoDBGET/api/contactGet all contact submissionsPOST/api/ai/chatAI chat (rate-limited: 20/min)POST/api/ai/career-recommendationGet AI career recommendationsGET/api/ai/history/:sessionIdGet chat history
 
-| Method | Endpoint                     | Description                        |
-|--------|-----------------------------|------------------------------------|
-| GET    | /api/health                 | Server health check                |
-| GET    | /api/careers                | Get all careers (filter: category, featured) |
-| GET    | /api/careers/:slug          | Get career by slug                 |
-| POST   | /api/careers                | Create new career                  |
-| POST   | /api/contact                | Submit contact form → MongoDB      |
-| GET    | /api/contact                | Get all contact submissions        |
-| POST   | /api/ai/chat                | AI chat (rate-limited: 20/min)     |
-| POST   | /api/ai/career-recommendation | Get AI career recommendations    |
-| GET    | /api/ai/history/:sessionId  | Get chat history                   |
+🗄️ Database Schemas
 
----
+Career — title, slug, description, category, skills, tools, roadmap, resources, salaryRange, demandLevel, futureScope, featured
 
-## 🗄️ Database Schemas
+Contact — name, email, phone, interestedCareer, message, status
 
-### Career Schema
-```javascript
-{
-  title: String (required),
-  slug: String (unique),
-  description: String,
-  icon: String (emoji),
-  category: Enum['Technology','Business','Creative','Science','Finance','Healthcare','Education'],
-  skills: [String],
-  tools: [String],
-  roadmap: [{ stage, duration, topics[] }],
-  resources: [{ title, url, type }],
-  salaryRange: { min, max, currency },
-  duration: String,
-  demandLevel: Enum['High','Medium','Low'],
-  futureScope: String,
-  featured: Boolean,
-  createdAt, updatedAt (auto)
-}
-```
+ChatHistory — sessionId, messages[], metadata
 
-### Contact Schema
-```javascript
-{
-  name: String (required, 2-100 chars),
-  email: String (required, valid email),
-  phone: String,
-  interestedCareer: String,
-  message: String (required, 10-2000 chars),
-  status: Enum['new','read','replied'],
-  createdAt, updatedAt (auto)
-}
-```
+📁 Project Structure
 
-### ChatHistory Schema
-```javascript
-{
-  sessionId: String (indexed),
-  messages: [{ role: 'user'|'assistant', content, timestamp }],
-  metadata: { totalMessages, lastActive },
-  createdAt, updatedAt (auto)
-}
-```
+careerpath-ai/
+├── frontend/          React app (components, pages, services)
+├── backend/           Express API (config, models, controllers, routes, middleware)
+└── README.md
 
----
+(Full tree in /docs/structure.md — kept out of the main README to keep it skimmable)
 
-## 🎨 UI Features
+🚀 Deployment
 
-| Feature | Implementation |
-|---------|----------------|
-| Typography | Cabinet Grotesk (display) + Satoshi (body) |
-| Theme | Indigo + Purple + Cyan gradient palette |
-| Animations | Framer Motion page transitions + hover effects |
-| Glassmorphism | Navbar on scroll with backdrop-filter |
-| Chat UI | Bubble interface, typing dots, auto-scroll |
-| Responsiveness | Mobile-first, CSS Grid + Flexbox |
-| Color tokens | CSS custom properties (`:root` variables) |
+Backend (Railway / Render / Heroku) — set MONGODB_URI, OPENAI_API_KEY, CLIENT_URL, NODE_ENV=production
 
----
+Frontend (Netlify / Vercel):
 
-## 🔒 Security Features
-
-- **Helmet.js** — Sets security HTTP headers
-- **CORS** — Configured for specific frontend origin
-- **Rate Limiting** — 200 req/15min general; 20 req/min for AI routes
-- **Input Validation** — express-validator on contact routes
-- **Environment Variables** — All secrets in `.env`
-- **Error Handling** — Centralized middleware, no stack traces in production
-
----
-
-## 🚀 Deployment
-
-### Backend (Railway / Render / Heroku)
-```bash
-# Set environment variables in your hosting dashboard
-PORT=5000
-MONGODB_URI=mongodb+srv://...
-OPENAI_API_KEY=sk-...
-CLIENT_URL=https://your-frontend.netlify.app
-NODE_ENV=production
-```
-
-### Frontend (Netlify / Vercel)
-```bash
-cd frontend
+bashcd frontend
 npm run build
-# Deploy the 'build' folder
-# Set REACT_APP_API_URL=https://your-backend.railway.app/api
-```
+# deploy the 'build' folder, set REACT_APP_API_URL to your backend URL
 
-### Netlify Redirect Fix (SPA)
-Create `frontend/public/_redirects`:
-```
-/*    /index.html   200
-```
+🔮 Roadmap
+ JWT authentication (student profiles)
+ Admin dashboard to manage careers
+ AI career recommendation quiz
+ Saved/bookmarked careers
+ AI resume builder
+ Analytics dashboard
 
----
+📄 License
 
-## 📦 Tech Stack Summary
+This project is licensed under the MIT License — see LICENSE for details.
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + React Router v6 |
-| Animations | Framer Motion |
-| Icons | React Icons |
-| HTTP Client | Axios |
-| Backend | Node.js + Express 4 |
-| Database | MongoDB + Mongoose |
-| AI | OpenAI SDK (compatible with Groq, Together) |
-| Security | Helmet + CORS + Rate Limit + express-validator |
-| Dev | Nodemon + CRA |
+👤 Author
+Madhava Bobbili
+MERN Stack Developer | B.Tech CSE, Pragati Engineering College
 
----
+LinkedIn: linkedin.com/in/madhava-bobbili
+GitHub: @25a35a0512
+LeetCode: 25a35a0512
 
-## 🔮 Future Roadmap
-
-- [ ] JWT Authentication (student profiles)
-- [ ] Admin dashboard to manage careers
-- [ ] AI Career Recommendation Quiz
-- [ ] Saved/bookmarked careers
-- [ ] Resume builder with AI
-- [ ] Blog/articles system
-- [ ] Analytics dashboard
-- [ ] Push notifications
-- [ ] Mobile app (React Native)
-
----
-
-*Built with ❤️ for students — CareerPath AI Team*
-"# Carrer-ai" 
+Built with ❤️ for students exploring their career paths.
